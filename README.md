@@ -1,59 +1,73 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Paygent
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Philippine HR and payroll management system built with Laravel 12, Inertia.js, and React.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Multi-role access** — HR Admin, Manager, and Employee portal
+- **Employee management** — profiles, departments, shift schedules
+- **Attendance tracking** — time logs with manager approval workflow
+- **Leave management** — leave types, balances, requests, and approvals
+- **Philippine payroll** — automatic SSS, PhilHealth, Pag-IBIG, and withholding tax computation
+- **Payslips** — employee self-service payslip view
+- **Reports** — payroll and attendance reporting
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend:** PHP 8.2+, Laravel 12, Laravel Sanctum
+- **Frontend:** React 18, Inertia.js 2, Tailwind CSS 3, Headless UI
+- **Build:** Vite 7
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP >= 8.2
+- Composer
+- Node.js >= 18
+- A database (MySQL, PostgreSQL, or SQLite)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Getting Started
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/gbl4ndz/paygent.git
+cd paygent
+composer run setup
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+This runs `composer install`, generates the app key, runs migrations, installs npm packages, and builds assets.
 
-### Premium Partners
+Configure your database in `.env` before running migrations.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Development
 
-## Contributing
+```bash
+composer run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Starts Laravel, queue worker, log viewer (Pail), and Vite dev server concurrently.
 
-## Code of Conduct
+## Testing
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer run test
+```
 
-## Security Vulnerabilities
+## Roles
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Role | Access |
+|------|--------|
+| `hr_admin` | Full system access — employees, payroll, reports, settings |
+| `manager` | Attendance and leave approvals for their team |
+| `employee` | Self-service portal — attendance, leave requests, payslips |
+
+## Philippine Payroll Deductions
+
+Computed automatically based on 2024 contribution tables:
+
+- **SSS** — 4.5% of Monthly Salary Credit (₱4,000–₱30,000 bracket)
+- **PhilHealth** — 5% of basic salary, employee share 2.5% (₱500–₱2,500 cap)
+- **Pag-IBIG** — 2% of salary (max ₱200 employee share)
+- **Withholding Tax** — TRAIN Law brackets on taxable income
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT
